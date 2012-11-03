@@ -1,0 +1,6 @@
+#ifndef __GL_INTEROP_TEST_KERNEL_H__
+#define __GL_INTEROP_TEST_KERNEL_H__
+
+
+
+#endif // __GL_INTEROP_TEST_KERNEL_H__

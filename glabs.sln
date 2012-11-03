@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glabs", "src\glabs\glabs.vcxproj", "{B86F0E74-B61E-43EC-9110-54397D6BE68A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glabstest", "src\glabstest\glabstest.vcxproj", "{ED9B69C4-329B-444A-95E9-EBE31425F5F9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4355FD32-287E-401D-BAC5-F13FE28D9FAD} = {4355FD32-287E-401D-BAC5-F13FE28D9FAD}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glabstestlib", "src\glabstestlib\glabstestlib.vcxproj", "{4355FD32-287E-401D-BAC5-F13FE28D9FAD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B86F0E74-B61E-43EC-9110-54397D6BE68A} = {B86F0E74-B61E-43EC-9110-54397D6BE68A}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{B5C8E2EF-DA93-4615-9E71-4C14DC7670DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{45E93A0E-E106-4CC8-843D-43E8A4B1917F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glabstestcuda", "src\glabstestcuda\glabstestcuda.vcxproj", "{B659585B-6973-471B-B167-7DCA3EFF6FBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B86F0E74-B61E-43EC-9110-54397D6BE68A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B86F0E74-B61E-43EC-9110-54397D6BE68A}.Debug|Win32.Build.0 = Debug|Win32
+		{B86F0E74-B61E-43EC-9110-54397D6BE68A}.Release|Win32.ActiveCfg = Release|Win32
+		{B86F0E74-B61E-43EC-9110-54397D6BE68A}.Release|Win32.Build.0 = Release|Win32
+		{ED9B69C4-329B-444A-95E9-EBE31425F5F9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ED9B69C4-329B-444A-95E9-EBE31425F5F9}.Debug|Win32.Build.0 = Debug|Win32
+		{ED9B69C4-329B-444A-95E9-EBE31425F5F9}.Release|Win32.ActiveCfg = Release|Win32
+		{ED9B69C4-329B-444A-95E9-EBE31425F5F9}.Release|Win32.Build.0 = Release|Win32
+		{4355FD32-287E-401D-BAC5-F13FE28D9FAD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4355FD32-287E-401D-BAC5-F13FE28D9FAD}.Debug|Win32.Build.0 = Debug|Win32
+		{4355FD32-287E-401D-BAC5-F13FE28D9FAD}.Release|Win32.ActiveCfg = Release|Win32
+		{4355FD32-287E-401D-BAC5-F13FE28D9FAD}.Release|Win32.Build.0 = Release|Win32
+		{B659585B-6973-471B-B167-7DCA3EFF6FBC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B659585B-6973-471B-B167-7DCA3EFF6FBC}.Debug|Win32.Build.0 = Debug|Win32
+		{B659585B-6973-471B-B167-7DCA3EFF6FBC}.Release|Win32.ActiveCfg = Release|Win32
+		{B659585B-6973-471B-B167-7DCA3EFF6FBC}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4355FD32-287E-401D-BAC5-F13FE28D9FAD} = {B5C8E2EF-DA93-4615-9E71-4C14DC7670DF}
+		{B86F0E74-B61E-43EC-9110-54397D6BE68A} = {B5C8E2EF-DA93-4615-9E71-4C14DC7670DF}
+		{ED9B69C4-329B-444A-95E9-EBE31425F5F9} = {45E93A0E-E106-4CC8-843D-43E8A4B1917F}
+		{B659585B-6973-471B-B167-7DCA3EFF6FBC} = {45E93A0E-E106-4CC8-843D-43E8A4B1917F}
+	EndGlobalSection
+EndGlobal
