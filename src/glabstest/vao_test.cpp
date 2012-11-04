@@ -7,8 +7,9 @@ TEST(VAOTest, Simple)
 	try
 	{
 		GLTestWindow window(true);
-		GLContextParam param;
+		window.SetTitle("VAOTest_Simple");
 
+		GLContextParam param;
 		param.DebugMode = true;
 
 		GLContext context(window.Handle(), param);
@@ -42,7 +43,6 @@ TEST(VAOTest, Simple)
 		while (window.ProcessEvent())
 		{
 			double elapsed = GLTestUtil::CurrentTimeMilli() - start;
-			window.SetTitle((boost::format("Elapsed time: %.2f") % (elapsed / 1000.0)).str());
 			if (elapsed >= 500.0)
 			{
 				break;
@@ -72,8 +72,9 @@ TEST(VAOTest, Simple2)
 	try
 	{
 		GLTestWindow window(true);
-		GLContextParam param;
+		window.SetTitle("VAOTest_Simple2");
 
+		GLContextParam param;
 		param.DebugMode = true;
 
 		GLContext context(window.Handle(), param);
@@ -115,7 +116,6 @@ TEST(VAOTest, Simple2)
 		while (window.ProcessEvent())
 		{
 			double elapsed = GLTestUtil::CurrentTimeMilli() - start;
-			window.SetTitle((boost::format("Elapsed time: %.2f") % (elapsed / 1000.0)).str());
 			if (elapsed >= 500.0)
 			{
 				break;

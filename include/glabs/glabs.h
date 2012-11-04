@@ -11,6 +11,15 @@
 
 class GLUtil
 {
+public:
+
+	enum DebugOutputFrequency
+	{
+		DebugOutputFrequencyHigh,
+		DebugOutputFrequencyMedium,
+		DebugOutputFrequencyLow
+	};
+
 private:
 
 	GLUtil() {}
@@ -19,7 +28,7 @@ private:
 public:
 
 	static void InitializeGlew(bool experimental = true);
-	static void EnableDebugOutput();
+	static void EnableDebugOutput(DebugOutputFrequency freq = DebugOutputFrequencyHigh);
 	static bool CheckExtension(const std::string& name);
 
 private:
@@ -156,6 +165,22 @@ protected:
 
 };
 
+class GLPixelPackBuffer : public GLBufferObject
+{
+public:
+
+	GLPixelPackBuffer();
+
+};
+
+class GLPixelUnpackBuffer : public GLBufferObject
+{
+public:
+
+	GLPixelUnpackBuffer();
+
+};
+
 class GLVertexBuffer : public GLBufferObject
 {
 public:
@@ -243,5 +268,62 @@ private:
 //{
 //
 //};
+
+class GLTexture : public GLResource
+{
+public:
+
+	GLTexture();
+	virtual ~GLTexture() = 0;
+
+	void Bind(int unit = 0);
+	void Unbind();
+
+protected:
+
+	GLenum target;
+
+};
+
+class GLTexture2D : public GLTexture
+{
+public:
+
+	GLTexture2D();
+
+	void Allocate(int width, int height);
+	void Allocate(int width, int height, GLenum internalFormat);
+	void Allocate(int width, int height, GLenum internalFormat, GLenum format, GLenum type, const void* data);
+	void Replace(const glm::ivec4& rect, GLenum format, GLenum type, const void* data);
+	void Replace(GLPixelUnpackBuffer* pbo, const glm::ivec4& rect, GLenum format, GLenum type, int offset = 0);
+	void GetInternalData(GLenum format, GLenum type, void* data);
+	void GenerateMipmap();
+	void UpdateTextureParams();
+	
+	int Width() { return width; }
+	int Height() { return height; }
+	GLenum InternalFormat() { return internalFormat; }
+
+	// TODO: replace with sampler object
+	GLenum MinFilter() { return minFilter; }
+	GLenum MagFilter() { return magFilter; }
+	GLenum Wrap() { return wrap; }
+	bool AnisotropicFiltering() { return anisotropicFiltering; }
+	void SetMinFilter(GLenum minFilter) { this->minFilter = minFilter; }
+	void SetMagFilter(GLenum magFilter) { this->magFilter = magFilter; }
+	void SetWrap(GLenum wrap) { this->wrap = wrap; }
+	void SetAnisotropicFiltering(bool anisotropicFiltering) { this->anisotropicFiltering = anisotropicFiltering; }
+
+private:
+
+	int width;
+	int height;
+	GLenum internalFormat;
+	GLenum minFilter;
+	GLenum magFilter;
+	GLenum wrap;
+	bool anisotropicFiltering;
+
+};
 
 #endif // __GLABS_H__

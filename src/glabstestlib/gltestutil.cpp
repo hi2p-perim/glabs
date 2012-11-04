@@ -65,45 +65,13 @@ static LRESULT CALLBACK WindowProcedure( HWND window, unsigned int msg, WPARAM w
 GLTestWindow::GLTestWindow( bool showWindow )
 	: done(false)
 {
-	WNDCLASSEX wc;
-	const TCHAR* className = _T("TestWindow");
+	Create(-1, -1, showWindow);
+}
 
-	wc.cbSize        = sizeof(WNDCLASSEX);
-	wc.style         = 0;
-	wc.lpfnWndProc   = WindowProcedure;
-	wc.cbClsExtra    = 0;
-	wc.cbWndExtra    = 0;
-	wc.hInstance     = GetModuleHandle(NULL);
-	wc.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
-	wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
-	wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-	wc.lpszMenuName  = NULL;
-	wc.lpszClassName = className;
-	wc.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
-
-	if (!RegisterClassEx(&wc))
-	{
-		THROW_GL_EXCEPTION(GLException::RunTimeError, "RegisterClassEx");
-	}
-
-	hwnd = (HWND)CreateWindowEx(
-		WS_EX_CLIENTEDGE,
-		className,
-		_T("GLTest"),
-		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
-		NULL, NULL, GetModuleHandle(NULL), NULL);
-
-	if (hwnd == NULL)
-	{
-		THROW_GL_EXCEPTION(GLException::RunTimeError, "CreateWindowEx");
-	}
-
-	if (showWindow)
-	{
-		ShowWindow((HWND)hwnd, SW_SHOWDEFAULT);
-		UpdateWindow((HWND)hwnd);
-	}
+GLTestWindow::GLTestWindow( int width, int height, bool showWindow /*= false*/ )
+	: done(false)
+{
+	Create(width, height, showWindow);
 }
 
 GLTestWindow::~GLTestWindow()
@@ -142,4 +110,50 @@ bool GLTestWindow::ProcessEvent()
 void GLTestWindow::SetTitle( const std::string& title )
 {
 	SetWindowTextA((HWND)hwnd, title.c_str());
+}
+
+void GLTestWindow::Create( int width, int height, bool showWindow )
+{
+	WNDCLASSEX wc;
+	const TCHAR* className = _T("TestWindow");
+
+	wc.cbSize        = sizeof(WNDCLASSEX);
+	wc.style         = 0;
+	wc.lpfnWndProc   = WindowProcedure;
+	wc.cbClsExtra    = 0;
+	wc.cbWndExtra    = 0;
+	wc.hInstance     = GetModuleHandle(NULL);
+	wc.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
+	wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
+	wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	wc.lpszMenuName  = NULL;
+	wc.lpszClassName = className;
+	wc.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
+
+	if (!RegisterClassEx(&wc))
+	{
+		THROW_GL_EXCEPTION(GLException::RunTimeError, "RegisterClassEx");
+	}
+
+	hwnd = (HWND)CreateWindowEx(
+		WS_EX_CLIENTEDGE,
+		className,
+		_T("GLTest"),
+		WS_OVERLAPPEDWINDOW,
+		CW_USEDEFAULT,
+		CW_USEDEFAULT,
+		width < 0 ? CW_USEDEFAULT : width,
+		height < 0 ? CW_USEDEFAULT : height,
+		NULL, NULL, GetModuleHandle(NULL), NULL);
+
+	if (hwnd == NULL)
+	{
+		THROW_GL_EXCEPTION(GLException::RunTimeError, "CreateWindowEx");
+	}
+
+	if (showWindow)
+	{
+		ShowWindow((HWND)hwnd, SW_SHOWDEFAULT);
+		UpdateWindow((HWND)hwnd);
+	}
 }

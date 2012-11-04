@@ -59,6 +59,8 @@ TEST(GLFWTest, Simple2)
 			THROW_GL_EXCEPTION(GLException::RunTimeError, "glfwOpenWindow");
 		}
 
+		glfwSetWindowTitle("GLFWTest_Simple2");
+
 		GLUtil::InitializeGlew();
 		GLUtil::EnableDebugOutput();
 
@@ -68,13 +70,10 @@ TEST(GLFWTest, Simple2)
 		while (running)
 		{
 			double elapsed = GLTestUtil::CurrentTimeMilli() - start;
-
 			if (elapsed >= 500.0)
 			{
 				break;
 			}
-
-			glfwSetWindowTitle((boost::format("Elapsed time: %.2f") % (elapsed / 1000.0)).str().c_str());
 
 			glClearColor((float)elapsed / 1000.0f, 1.0f, 0.0f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);

@@ -20,11 +20,16 @@ class GLTestWindow
 public:
 
 	GLTestWindow(bool showWindow = false);
+	GLTestWindow(int width, int height, bool showWindow = false);
 	~GLTestWindow();
 
 	bool ProcessEvent();
 	void SetTitle(const std::string& title);
 	void* Handle() { return hwnd; }
+
+private:
+
+	void Create(int width, int height, bool showWindow);
 
 private:
 

@@ -7,6 +7,8 @@ TEST(ShaderTest, CompileFromFile)
 	try
 	{
 		GLTestWindow window(true);
+		window.SetTitle("ShaderTest_CompileFromFile");
+
 		GLContextParam param;
 
 		// Direct host pointer access of glVertexAttribPointer
@@ -38,8 +40,6 @@ TEST(ShaderTest, CompileFromFile)
 		while (window.ProcessEvent())
 		{
 			double elapsed = GLTestUtil::CurrentTimeMilli() - start;
-
-			window.SetTitle((boost::format("Elapsed time: %.2f") % (elapsed / 1000.0)).str());
 			if (elapsed >= 500.0)
 			{
 				break;
@@ -72,6 +72,8 @@ TEST(ShaderTest, CompileFromFile2)
 	try
 	{
 		GLTestWindow window(true);
+		window.SetTitle("ShaderTest_CompileFromFile2");
+
 		GLContextParam param;
 
 		// Direct host pointer access of glVertexAttribPointer
@@ -103,8 +105,6 @@ TEST(ShaderTest, CompileFromFile2)
 		while (window.ProcessEvent())
 		{
 			double elapsed = GLTestUtil::CurrentTimeMilli() - start;
-
-			window.SetTitle((boost::format("Elapsed time: %.2f") % (elapsed / 1000.0)).str());
 			if (elapsed >= 500.0)
 			{
 				break;
@@ -154,6 +154,8 @@ TEST(ShaderTest, CompileFromString)
 	try
 	{
 		GLTestWindow window(true);
+		window.SetTitle("ShaderTest_CompileFromString");
+
 		GLContextParam param;
 
 		// Direct host pointer access of glVertexAttribPointer
@@ -185,8 +187,6 @@ TEST(ShaderTest, CompileFromString)
 		while (window.ProcessEvent())
 		{
 			double elapsed = GLTestUtil::CurrentTimeMilli() - start;
-
-			window.SetTitle((boost::format("Elapsed time: %.2f") % (elapsed / 1000.0)).str());
 			if (elapsed >= 500.0)
 			{
 				break;
@@ -219,6 +219,8 @@ TEST(ShaderTest, ShaderParameter)
 	try
 	{
 		GLTestWindow window(true);
+		window.SetTitle("ShaderTest_ShaderParameter");
+
 		GLContextParam param;
 
 		// Direct host pointer access of glVertexAttribPointer
@@ -242,8 +244,6 @@ TEST(ShaderTest, ShaderParameter)
 		while (window.ProcessEvent())
 		{
 			double elapsed = GLTestUtil::CurrentTimeMilli() - start;
-
-			window.SetTitle((boost::format("Elapsed time: %.2f") % (elapsed / 1000.0)).str());
 			if (elapsed >= 500.0)
 			{
 				break;

@@ -10,7 +10,7 @@ __global__ void AddKernel( int a, int b, int* c )
 	*c = AddFunc(a, b);
 }
 
-extern "C" void RunAddKernel( int a, int b, int* c )
+extern "C" void Run_AddKernel( int a, int b, int* c )
 {
 	AddKernel<<<1, 1>>>(a, b, c);
 }

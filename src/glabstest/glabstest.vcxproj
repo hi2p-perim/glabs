@@ -92,7 +92,9 @@
     <ClCompile Include="debugoutput_test.cpp" />
     <ClCompile Include="glcontext_test.cpp" />
     <ClCompile Include="glfw_test.cpp" />
+    <ClCompile Include="pbo_test.cpp" />
     <ClCompile Include="shader_test.cpp" />
+    <ClCompile Include="texture_test.cpp" />
     <ClCompile Include="vao_test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +106,8 @@
     <None Include="..\..\bin\resources\shadertest_param.vert" />
     <None Include="..\..\bin\resources\shadertest_simple.frag" />
     <None Include="..\..\bin\resources\shadertest_simple.vert" />
+    <None Include="..\..\bin\resources\texturetest_simple2d.frag" />
+    <None Include="..\..\bin\resources\texturetest_simple2d.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

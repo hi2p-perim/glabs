@@ -18,6 +18,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{45E93A0E-E106-4CC8-843D-43E8A4B1917F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glabstestcuda", "src\glabstestcuda\glabstestcuda.vcxproj", "{B659585B-6973-471B-B167-7DCA3EFF6FBC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4355FD32-287E-401D-BAC5-F13FE28D9FAD} = {4355FD32-287E-401D-BAC5-F13FE28D9FAD}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

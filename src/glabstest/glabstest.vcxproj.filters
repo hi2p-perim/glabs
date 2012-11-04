@@ -36,6 +36,12 @@
     <ClCompile Include="vao_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="texture_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pbo_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -56,6 +62,12 @@
       <Filter>Shader Files</Filter>
     </None>
     <None Include="..\..\bin\resources\shadertest_param.geom">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="..\..\bin\resources\texturetest_simple2d.vert">
+      <Filter>Shader Files</Filter>
+    </None>
+    <None Include="..\..\bin\resources\texturetest_simple2d.frag">
       <Filter>Shader Files</Filter>
     </None>
   </ItemGroup>

@@ -1,8 +1,8 @@
-#OS junk files
+# OS junk files
 [Tt]humbs.db
 *.DS_Store
 
-#Visual Studio files
+# Visual Studio files
 *.[Oo]bj
 *.user
 *.aps
@@ -33,27 +33,31 @@ obj/
 Ankh.NoLoad
 *.userprefs
 
-#Tooling
+# Tooling
 _ReSharper*/
 *.resharper
 [Tt]est[Rr]esult*
 
-#Project files
+# Project files
 [Bb]uild/
 
-#Subversion files
+# Subversion files
 .svn
 
 # Office Temp Files
 ~$*
 
-#NuGet
+# NuGet
 packages/
 
-#ncrunch
+# ncrunch
 *ncrunch*
 *crunch*.local.xml
 
-#Project specific
+# CUDA
+*.o
+*.pdb
+
+# Project specific
 misc/
 external/

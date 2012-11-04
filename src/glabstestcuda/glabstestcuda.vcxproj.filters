@@ -24,6 +24,9 @@
     <ClInclude Include="glinterop_test_kernel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cudautil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="common.cpp">
@@ -33,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="glinterop_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cudautil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

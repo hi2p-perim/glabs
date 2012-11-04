@@ -24,13 +24,24 @@ void GLUtil::InitializeGlew(bool experimental)
 	}
 }
 
-void GLUtil::EnableDebugOutput()
+void GLUtil::EnableDebugOutput(DebugOutputFrequency freq)
 {
 	// Initialize GL_ARB_debug_output
 	if (GLEW_ARB_debug_output)
 	{
 		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 		glDebugMessageControlARB(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
+		
+		if (freq == DebugOutputFrequencyMedium)
+		{
+			glDebugMessageControlARB(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_LOW_ARB, 0, NULL, GL_FALSE);
+		}
+		else if (freq == DebugOutputFrequencyLow)
+		{
+			glDebugMessageControlARB(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_MEDIUM_ARB, 0, NULL, GL_FALSE);
+			glDebugMessageControlARB(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_LOW_ARB, 0, NULL, GL_FALSE);
+		}
+		
 		glDebugMessageCallbackARB(&GLUtil::DebugOutput, NULL);
 	}
 	else
@@ -467,6 +478,20 @@ void GLBufferObject::Unmap()
 
 // ----------------------------------------------------------------------
 
+GLPixelPackBuffer::GLPixelPackBuffer()
+{
+	target = GL_PIXEL_PACK_BUFFER;
+}
+
+// ----------------------------------------------------------------------
+
+GLPixelUnpackBuffer::GLPixelUnpackBuffer()
+{
+	target = GL_PIXEL_UNPACK_BUFFER;
+}
+
+// ----------------------------------------------------------------------
+
 GLVertexBuffer::GLVertexBuffer()
 {
 	target = GL_ARRAY_BUFFER;
@@ -776,6 +801,115 @@ GLuint GLShader::GetOrCreateUniformID( const std::string& name )
 	}
 
 	return it->second;
+}
+
+// ----------------------------------------------------------------------
+
+GLTexture::GLTexture()
+{
+	glGenTextures(1, &id);
+}
+
+GLTexture::~GLTexture()
+{
+	glDeleteTextures(1, &id);
+}
+
+void GLTexture::Bind( int unit )
+{
+	glActiveTexture((GLenum)(GL_TEXTURE0 + unit));
+	glBindTexture(target, id);
+}
+
+void GLTexture::Unbind()
+{
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(target, 0);
+}
+
+// ----------------------------------------------------------------------
+
+GLTexture2D::GLTexture2D()
+{
+	target = GL_TEXTURE_2D;
+	minFilter = GL_LINEAR_MIPMAP_LINEAR;
+	magFilter = GL_LINEAR;
+	wrap = GL_REPEAT;
+	anisotropicFiltering = true;
+}
+
+void GLTexture2D::Allocate( int width, int height )
+{
+	Allocate(width, height, GL_RGBA8);
+}
+
+void GLTexture2D::Allocate( int width, int height, GLenum internalFormat )
+{
+	Allocate(width, height, internalFormat, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+}
+
+void GLTexture2D::Allocate( int width, int height, GLenum internalFormat, GLenum format, GLenum type, const void* data )
+{
+	this->width = width;
+	this->height = height;
+	this->internalFormat = internalFormat;
+
+	Bind();
+	glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, type, data);
+	GenerateMipmap();
+	UpdateTextureParams();
+	Unbind();
+}
+
+void GLTexture2D::Replace( const glm::ivec4& rect, GLenum format, GLenum type, const void* data )
+{
+	Bind();
+	glTexSubImage2D(GL_TEXTURE_2D, 0, rect.x, rect.y, rect.z, rect.w, format, type, data);
+	GenerateMipmap();
+	Unbind();
+}
+
+void GLTexture2D::Replace( GLPixelUnpackBuffer* pbo, const glm::ivec4& rect, GLenum format, GLenum type, int offset /*= 0*/ )
+{
+	pbo->Bind();
+	Replace(rect, format, type, (void*)offset);
+	pbo->Unbind();
+}
+
+void GLTexture2D::GetInternalData( GLenum format, GLenum type, void* data )
+{
+	Bind();
+	glGetTexImage(GL_TEXTURE_2D, 0, format, type, data);
+	Unbind();
+}
+
+void GLTexture2D::GenerateMipmap()
+{
+	if (minFilter == GL_LINEAR_MIPMAP_LINEAR && magFilter == GL_LINEAR)
+	{
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+}
+
+void GLTexture2D::UpdateTextureParams()
+{
+	if (anisotropicFiltering)
+	{
+		// If the anisotropic filtering can be used,
+		// set to the maximum possible value.
+		float maxAnisoropy;
+
+		glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &maxAnisoropy);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, maxAnisoropy);
+	}
+
+	// Wrap mode
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrap);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrap);
+
+	// Filters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, magFilter);
 }
 
 // ----------------------------------------------------------------------
