@@ -31,8 +31,8 @@ TEST(ShaderTest, CompileFromFile)
 		// Create shader
 		GLShader shader;
 
-		shader.Compile("./resources/shadertest_simple.vert");
-		shader.Compile("./resources/shadertest_simple.frag");
+		shader.Compile("../resources/shadertest_simple.vert");
+		shader.Compile("../resources/shadertest_simple.frag");
 		shader.Link();
 
 		double start = GLTestUtil::CurrentTimeMilli();
@@ -96,8 +96,8 @@ TEST(ShaderTest, CompileFromFile2)
 		// Create shader
 		GLShader shader;
 
-		shader.Compile(GLShader::VertexShader, "./resources/shadertest_simple.vert");
-		shader.Compile(GLShader::FragmentShader, "./resources/shadertest_simple.frag");
+		shader.Compile(GLShader::VertexShader, "../resources/shadertest_simple.vert");
+		shader.Compile(GLShader::FragmentShader, "../resources/shadertest_simple.frag");
 		shader.Link();
 
 		double start = GLTestUtil::CurrentTimeMilli();
@@ -234,9 +234,9 @@ TEST(ShaderTest, ShaderParameter)
 		// Create shader
 		GLShader shader;
 
-		shader.Compile("./resources/shadertest_param.vert");
-		shader.Compile("./resources/shadertest_param.geom");
-		shader.Compile("./resources/shadertest_param.frag");
+		shader.Compile("../resources/shadertest_param.vert");
+		shader.Compile("../resources/shadertest_param.geom");
+		shader.Compile("../resources/shadertest_param.frag");
 		shader.Link();
 
 		double start = GLTestUtil::CurrentTimeMilli();

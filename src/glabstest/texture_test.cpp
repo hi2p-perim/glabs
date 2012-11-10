@@ -18,8 +18,8 @@ TEST(TextureTest, Simple2DTexture)
 		// ------------------------------------------------------------
 
 		GLShader shader;
-		shader.Compile("./resources/texturetest_simple2d.vert");
-		shader.Compile("./resources/texturetest_simple2d.frag");
+		shader.Compile("../resources/texturetest_simple2d.vert");
+		shader.Compile("../resources/texturetest_simple2d.frag");
 		shader.Link();
 
 		// ------------------------------------------------------------

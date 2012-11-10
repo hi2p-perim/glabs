@@ -18,8 +18,8 @@ TEST(VAOTest, Simple)
 		// ------------------------------------------------------------
 
 		GLShader shader;
-		shader.Compile("./resources/shadertest_simple.vert");
-		shader.Compile("./resources/shadertest_simple.frag");
+		shader.Compile("../resources/shadertest_simple.vert");
+		shader.Compile("../resources/shadertest_simple.frag");
 		shader.Link();
 
 		GLVertexArray vao;
@@ -83,8 +83,8 @@ TEST(VAOTest, Simple2)
 		// ------------------------------------------------------------
 
 		GLShader shader;
-		shader.Compile("./resources/shadertest_simple.vert");
-		shader.Compile("./resources/shadertest_simple.frag");
+		shader.Compile("../resources/shadertest_simple.vert");
+		shader.Compile("../resources/shadertest_simple.frag");
 		shader.Link();
 
 		GLVertexArray vao;

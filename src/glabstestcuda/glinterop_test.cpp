@@ -56,8 +56,8 @@ TEST(GLInteropTest, Julia)
 		// ------------------------------------------------------------
 
 		GLShader shader;
-		shader.Compile("./resources/texturetest_simple2d.vert");
-		shader.Compile("./resources/texturetest_simple2d.frag");
+		shader.Compile("../resources/texturetest_simple2d.vert");
+		shader.Compile("../resources/texturetest_simple2d.frag");
 		shader.Link();
 
 		GLVertexArray vao;
